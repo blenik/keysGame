@@ -73,7 +73,7 @@ class InterfaceCreator(object):
     
     def points_decrease(self,side):
         '''
-        zmniejsza punkty gracza o 1 je¿eli sa wieksze od zera
+        zmniejsza punkty gracza o 1 jezeli sa wieksze od zera
         param:
             side :bool 
         lewego jezeli TRUE 
@@ -88,7 +88,7 @@ class InterfaceCreator(object):
     def score_increase(self,side):
         '''
         zwieksza wynik gracza o 1 po czym zeruje punkty obu graczom 
-        wynik jest w postaci iloœci gwiazdek po ka¿dej ze stron
+        wynik jest w postaci ilosci gwiazdek po kazdej ze stron
         param:
             side :bool 
         lewego jezeli TRUE 
@@ -105,7 +105,7 @@ class InterfaceCreator(object):
     def return_interface(self):
         '''
         funkcjka zwracajaca stringa zlozonego z funkcji line
-        ogólny wyglad interfejsu
+        ogolny wyglad interfejsu
         '''
         string_interface=self.line_breaker()
         string_interface+=self.line_sides()
