@@ -69,8 +69,12 @@ def printingTheMap(map):
 
 # wywolanie funkcji
 readingLevelsFromFileToArray(lista)
-printingTheMap(lista)
+#printingTheMap(lista)
+gracz_1=player(1,20)
+gracz_2=player(20,20)
 
+def cls():
+    os.system('cls')
 
 
 #section 2: fight
@@ -80,7 +84,7 @@ printingTheMap(lista)
 
 #section 3: moving
 
-while true:
+while True:
     #if key == 27:  # ESC
        # break
     zmiennaP1=False
