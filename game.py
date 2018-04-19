@@ -8,6 +8,8 @@ from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
 from movement import player
 import os
+import fight
+
 PLANSZA_SIZE=22
 interfacePrinter=InterfaceCreator(PLANSZA_SIZE,"*") # tworzy instancje creatora interfejsu
 
