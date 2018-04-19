@@ -1,4 +1,4 @@
-#the project is divided into sections. 
+#the project is divided into sections.
 #edit only your section!
 #comment all yours code!
 
@@ -109,7 +109,7 @@ while True:
 #section 6: interface
 
 
-interfacePrinter=InterfaceCreator(PLANSZA_SIZE,"*") # tworzy instancje creatora interfejsu 
-# dalej trzeba by sie bawic nim w miejscu gdzie sa dodawane punkty i wynik 
+interfacePrinter=InterfaceCreator(PLANSZA_SIZE,"*") # tworzy instancje creatora interfejsu
+# dalej trzeba by sie bawic nim w miejscu gdzie sa dodawane punkty i wynik
 # i printowac w miejscu drukowaniu mapy
 interfacePrinter.print_interface()
