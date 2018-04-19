@@ -4,7 +4,9 @@
 
 #section 0: global
 from InterfaceCreator import InterfaceCreator
+from msvcrt import getch
 from movement_2 import player
+import movement_2
 PLANSZA_SIZE=22
 
 
