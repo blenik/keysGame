@@ -6,8 +6,7 @@
 import random
 from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
-from movement_2 import player
-import movement_2
+from movement import player
 import os
 PLANSZA_SIZE=22
 interfacePrinter=InterfaceCreator(PLANSZA_SIZE,"*") # tworzy instancje creatora interfejsu
@@ -138,8 +137,3 @@ while true:
 
 #section 6: interface
 
-
-interfacePrinter=InterfaceCreator(PLANSZA_SIZE,"*") # tworzy instancje creatora interfejsu
-# dalej trzeba by sie bawic nim w miejscu gdzie sa dodawane punkty i wynik
-# i printowac w miejscu drukowaniu mapy
-interfacePrinter.print_interface()
