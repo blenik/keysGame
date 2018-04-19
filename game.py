@@ -3,6 +3,7 @@
 #comment all yours code!
 
 #section 0: global
+import random
 from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
 from movement_2 import player
@@ -10,7 +11,46 @@ import movement_2
 PLANSZA_SIZE=22
 
 
+
 #section 1: map
+
+def respawn():
+
+    spawn=(Plansza[1][1], Plansza[1][20], Plansza[20][1], Plansza[20][20])
+    spot=(random.choice(spawn))
+
+    return spot
+
+# section 4: randomization
+def init_keys(Plansza):
+    i = 0
+    while i < 2:
+        t = random.sample(range(1, 21), 2)
+        if Plansza[1][t[0]]!=" " or Plansza[1][t[1]]!=" ":
+            i=i
+        else:
+            Plansza[1][t[i]] = "k"
+            i = i + 1
+
+    i = 0
+    j = 1
+    while 3 * j < 21:
+        if 3*j==6:
+            j=j+1
+        while i < 2:
+            t = random.sample(range(1, 21), 2)
+            if Plansza[3 * j][t[0]] != " " or Plansza[3 * j][t[1]] != " ":
+                i=i
+            else:
+                Plansza[3 * j][t[i]] = "k"
+                i=i+1
+
+        i = 0
+        j = j + 1
+
+
+    Plansza[20][1]="k"
+
 
 lista = list()
 
@@ -31,6 +71,18 @@ def printingTheMap(map):
 # wywolanie funkcji
 readingLevelsFromFileToArray(lista)
 printingTheMap(lista)
+
+
+FileBoard = open('Level_1_Template.txt', 'r')
+BoardGameArray = FileBoard.read().splitlines()
+
+lista=list()
+
+for linia in BoardGameArray:
+    lista.append([c for _,c in enumerate(linia)])
+init_keys(lista)
+for row in lista:
+    print(''.join([str(elem) for elem in row]))
 
 
 
@@ -82,10 +134,6 @@ while true:
 
 
 
-
-
-
-#section 4: randomization
 
 
 
