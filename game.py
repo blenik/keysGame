@@ -33,7 +33,7 @@ def init_keys(Plansza):
             j=j+1
         while i < 2:
             t = random.sample(range(1, 21), 2)
-            if Plansza[3 * j][t[0]] == "_" or Plansza[3 * j][t[1]] == "_":
+            if Plansza[3 * j][t[0]] != " " or Plansza[3 * j][t[1]] != " ":
                 i=i
             else:
                 Plansza[3 * j][t[i]] = "k"
