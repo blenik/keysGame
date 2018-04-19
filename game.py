@@ -8,20 +8,32 @@ from InterfaceCreator import InterfaceCreator
 PLANSZA_SIZE=22
 
 
+def respawn():
+
+    spawn=(Plansza[1][1], Plansza[1][20], Plansza[20][1], Plansza[20][20])
+    spot=(random.choice(spawn))
+
+    return spot
+
 # section 4: randomization
 def init_keys(Plansza):
     i = 0
-    while i < 3:
-        t = random.sample(range(1, 21), 3)
-        Plansza[1][t[i]] = "k"
-        i = i + 1
+    while i < 2:
+        t = random.sample(range(1, 21), 2)
+        if Plansza[1][t[0]]!=" " or Plansza[1][t[1]]!=" ":
+            i=i
+        else:
+            Plansza[1][t[i]] = "k"
+            i = i + 1
 
     i = 0
     j = 1
     while 3 * j < 21:
-        while i < 3:
-            t = random.sample(range(1, 21), 3)
-            if Plansza[3 * j][t[0]] == "#" or Plansza[3 * j][t[1]] == "#" or Plansza[3 * j][t[2]] == "#":
+        if 3*j==6:
+            j=j+1
+        while i < 2:
+            t = random.sample(range(1, 21), 2)
+            if Plansza[3 * j][t[0]] == "_" or Plansza[3 * j][t[1]] == "_":
                 i=i
             else:
                 Plansza[3 * j][t[i]] = "k"
@@ -29,6 +41,9 @@ def init_keys(Plansza):
 
         i = 0
         j = j + 1
+
+
+    Plansza[20][1]="k"
 
 
 #section 1: map
