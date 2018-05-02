@@ -1,7 +1,7 @@
 '''
 Created on 17 kwi 2018
 
-@author: Intel
+@author: JakubF
 '''
 
 class InterfaceCreator(object):
@@ -10,7 +10,7 @@ class InterfaceCreator(object):
     
     ogolne uzycie
         utworz instancje klasy
-        zmieniaj punkty za pomoca points_increase/decraesae
+        zmieniaj punkty za pomoca points_increase/decrease
         zwieksz wynik za pomoca score_increase
         
         zwroc string z interfejsem za pomoca
@@ -28,7 +28,7 @@ class InterfaceCreator(object):
         '''
         Constructor
         Przyjmuje 2 parametry 
-        plansza_size czyli ile znakow wydrukuje w jednel lini musi conwertowac na inta
+        plansza_size czyli ile znakow wydrukuje w jednej lini musi conwertowac na inta
         plansza_symbol za pomoca jakiego smbolu bedzie wypisywal linie musi byc krotszy od rozmiaru planszy/2 - 6(najszerszy punkt interfejsu)
         i dopisuje je do zmiennych prywatnych o tych samych nazwach
         
@@ -81,7 +81,7 @@ class InterfaceCreator(object):
         '''
         if side and self.p1Points>0:
             self.p1Points-=1  
-        elif self.p1Points>0: 
+        elif side==False and self.p2Points>0: 
             self.p2Points-=1
     
             
