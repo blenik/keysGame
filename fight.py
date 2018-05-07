@@ -182,7 +182,3 @@ Nasluchiwanie wcisniecia klawisza i przeslanie informacji do funkcj in_press_che
 listener = keyboard.Listener(on_press=on_press_checkinputkey)
 listener.start()
 listener.join()
-
-"""
-W razie niejasnosci kontakt wskazany
-"""
