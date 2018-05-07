@@ -85,7 +85,7 @@ def cls():
 
 
 #section 3: moving
-
+# pętla odpowiedzialna za oczekiwanie na wcisnięcie klawisza,
 while True:
     #if key == 27:  # ESC
        # break
@@ -131,9 +131,9 @@ while True:
         interfacePrinter.points_increase(True)
     if zmiennaP2:
         interfacePrinter.points_increase(False)
-    cls()
-    printingTheMap(lista)
-    interfacePrinter.print_interface()
+    cls()  #czyszczenie ekranu
+    printingTheMap(lista)   # wczytywanie mapy
+    interfacePrinter.print_interface()  # pokazuje interface
 
 
 #section 5: rendering
