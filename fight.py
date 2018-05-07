@@ -176,11 +176,13 @@ def display_letters_toclick(var1, var2):
 #     show_scores_after_fight()
 
 
-
-
 """
 Nasluchiwanie wcisniecia klawisza i przeslanie informacji do funkcj in_press_checkinputkey podczas wcisniecia klawisza
 """
 listener = keyboard.Listener(on_press=on_press_checkinputkey)
 listener.start()
 listener.join()
+
+"""
+W razie niejasnosci kontakt wskazany
+"""
