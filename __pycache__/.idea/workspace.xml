@@ -89,7 +89,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Menu">
+  <component name="RunManager" selected="Python.movement_test">
     <configuration name="Menu" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="__pycache__" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -217,6 +217,7 @@
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list>
+      <item itemvalue="Python.movement_test" />
       <item itemvalue="Python.movement_test (1)" />
       <item itemvalue="Python.game" />
       <item itemvalue="Python.movement_test (2)" />
