@@ -158,12 +158,12 @@ class Fight_Class(object):
              print("=======================================\n")
 
 
-k=Fight_Class()
-k.chars_randomization()
-
-while True:
-    if k.collision(1,1,1,2):
-
-        k.fight_interface()
-        key = getch().decode("utf-8")
-        k.on_press_checkinputkey(key)
+# k=Fight_Class()
+# k.chars_randomization()
+#
+# while True:
+#     if k.collision(1,1,1,2):
+#
+#         k.fight_interface()
+#         key = getch().decode("utf-8")
+#         k.on_press_checkinputkey(key)

@@ -96,6 +96,8 @@ while True:
     zmiennaP1 = False
     zmiennaP2 = False
 
+
+
     key = ord(getch())
     if key == 115:  # S move down
         print('down')
@@ -137,6 +139,13 @@ while True:
 
     if k.collision(gracz_1.x, gracz_1.y, gracz_2.x, gracz_2.y):
         k.chars_randomization()
-        k.display_letters_toclick(k.randomcharsforP1_static, k.randomcharsforP2_static)
-        key = getch().decode("utf-8")
-        k.on_press_checkinputkey(key)
+        # k.display_letters_toclick(k.randomcharsforP1_static, k.randomcharsforP2_static)
+        while k.killStatePlayer1 == False or k.killStatePlayer2 == False:
+            k.fight_interface()
+            print (k.killStatePlayer1, k.killStatePlayer2)
+            key = getch().decode("utf-8")
+            k.on_press_checkinputkey(key)
+            if k.killStatePlayer1 == True or k.killStatePlayer2 == True:
+                k.killStatePlayer1 = False
+                k.killStatePlayer2 = False
+                break
