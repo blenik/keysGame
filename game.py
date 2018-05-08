@@ -8,9 +8,13 @@ from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
 from movement import player
 import os
+<<<<<<< HEAD
 from map import readingLevelsFromFileToArray
 from map import printingTheMap
 # import fight
+=======
+from fight import Fight_Class
+>>>>>>> d96ca94a2003fd6b368f1089fa19fd630ba9c173
 
 PLANSZA_SIZE = 22
 interfacePrinter = InterfaceCreator(PLANSZA_SIZE, "*")  # tworzy instancje creatora interfejsu
@@ -65,20 +69,30 @@ readingLevelsFromFileToArray(lista)
 printingTheMap(lista)
 
 
+<<<<<<< HEAD
+=======
+# wywolanie funkcji
+
+# printingTheMap(lista)
+k=Fight_Class()
+>>>>>>> d96ca94a2003fd6b368f1089fa19fd630ba9c173
 gracz_1 = player(1, 20)
 gracz_2 = player(20, 20)
-
+readingLevelsFromFileToArray(lista)
+init_keys(lista)
 
 def cls():
     os.system('cls')
 
-
-printingTheMap(lista)  # wczytywanie mapy
+interfacePrinter.print_interface()
+printingTheMap(lista)
 
 while True:
 
     zmiennaP1 = False
     zmiennaP2 = False
+
+
 
     key = ord(getch())
     if key == 115:  # S move down
@@ -115,5 +129,19 @@ while True:
         interfacePrinter.points_increase(True)
     if zmiennaP2:
         interfacePrinter.points_increase(False)
+    # cls()
     interfacePrinter.print_interface()  # pokazuje interface
     printingTheMap(lista)  # wczytywanie mapy
+
+    if k.collision(gracz_1.x, gracz_1.y, gracz_2.x, gracz_2.y):
+        k.chars_randomization()
+        # k.display_letters_toclick(k.randomcharsforP1_static, k.randomcharsforP2_static)
+        while k.killStatePlayer1 == False or k.killStatePlayer2 == False:
+            k.fight_interface()
+            print (k.killStatePlayer1, k.killStatePlayer2)
+            key = getch().decode("utf-8")
+            k.on_press_checkinputkey(key)
+            if k.killStatePlayer1 == True or k.killStatePlayer2 == True:
+                k.killStatePlayer1 = False
+                k.killStatePlayer2 = False
+                break
