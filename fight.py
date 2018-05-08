@@ -19,7 +19,6 @@ import random
 import os
 import math
 
-
 """
 Funkcja collision przyjmuje parametry odpowiedzialne za wspolrzedne jednego i drugiego gracza gdzie:
 x1,y1 = wspolrzedna x i y gracza nr 1
@@ -29,8 +28,10 @@ Jezeli dwaj gracze sa od siebie oddaleni na 1 kratke funkcja zwraca wartosc True
 
 Funkcje nalezy zaimplementowac w glownej petly gry
 """
+
+
 def collision(x1, y1, x2, y2):
-    if (math.sqrt((x2 - x1)**2 + (y2 - y1)**2)) == 1: # obliczanie odleglosci miedzy dwoma playerami
+    if (math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)) == 1:  # obliczanie odleglosci miedzy dwoma playerami
         return True
 
 
@@ -39,27 +40,28 @@ Funckja randomcharsforP1 losuje znaki z x c dla gracza 1 i je zwraca
 Funkcja uzywana w klasie Variable, znaki przypisane na stale podczas walki do zmiennych randomcharsforP1_static
 """
 
-def randomcharsforP1():
 
-    chars1 = ['z', 'x', 'c'] # litery z ktorych program losuje
+def randomcharsforP1():
+    chars1 = ['z', 'x', 'c']  # litery z ktorych program losuje
     stry = ""
     charsForPlayer1 = []
     i = len(chars1)
     while i > 0:
         w = random.randint(0, 2)
         if chars1[w] not in charsForPlayer1:
-            charsForPlayer1.append(chars1[w]) # jezeli danej litery nie ma jeszcze w nowej liscie to dodaj
+            charsForPlayer1.append(chars1[w])  # jezeli danej litery nie ma jeszcze w nowej liscie to dodaj
             stry += chars1[w]
             i -= 1
     return charsForPlayer1
+
 
 """
 Funckja randomcharsforP1 losuje znaki b n m dla gracza 2
 Uzywana w klasie Variable, znaki przypisane na stale podczas walki do zmiennych randomcharsforP2_static
 """
 
-def randomcharsforP2():
 
+def randomcharsforP2():
     chars2 = ['b', 'n', 'm']
     charsForPlayer2 = []
     i = len(chars2)
@@ -70,6 +72,7 @@ def randomcharsforP2():
             i -= 1
     return charsForPlayer2
 
+
 """
    Clasa variable przechowuje zmienne:
    Dla randomcharsforP1_static i randomcharsforP2_static przypisujemy wylosowany zestaw znakow.
@@ -77,15 +80,18 @@ def randomcharsforP2():
    Zmienne var_countP1 i var_countP2 przechowuja informacje ile poprawnych znakow zostalo wcisnietych.
 
 """
+
+
 class Variable:
     randomcharsforP1_static = randomcharsforP1()
     randomcharsforP2_static = randomcharsforP2()
     killStatePlayer1 = False
     killStatePlayer2 = False
-    var_countP1 = 0 # ilosc poprawnie wcisnietych klawiszy gracza 1
-    var_countP2 = 0 # ilosc poprawnie wcisnietych klawiszy gracza 2
+    var_countP1 = 0  # ilosc poprawnie wcisnietych klawiszy gracza 1
+    var_countP2 = 0  # ilosc poprawnie wcisnietych klawiszy gracza 2
     player1Points = 3
     player2Points = 3
+
 
 """
 Funkcja on_press_checkinputkey przechwytuje klawisze w momencie wystapienia kolizji (funkcja collision)
@@ -95,28 +101,36 @@ Funkcja wypisuje rowniez informacje kiedy nastapuje walka oraz jaka sekwencje kl
 
 """
 
-def on_press_checkinputkey(key):
 
-    try: k = key.char
-    except: k = key.name
-    if k is Variable.randomcharsforP1_static[Variable.var_countP1] and Variable.killStatePlayer2 == False:  # sprawdzanie czy wcisniety klawisz jest taki jaki znajduje sie w liscie wczesniej wylosowanych znakow (w klasie Variable)
-        Variable.randomcharsforP1_static[Variable.var_countP1] = str.capitalize(Variable.randomcharsforP1_static[Variable.var_countP1]) # Jezeli przycis zgadza sie z wylosowanym wczesniej to zmienia sie jego wielkosc na wielka litere
-        os.system("cls") # czyszczenie ekranu
+def on_press_checkinputkey(key):
+    try:
+        k = key.char
+    except:
+        k = key.name
+    if k is Variable.randomcharsforP1_static[
+        Variable.var_countP1] and Variable.killStatePlayer2 == False:  # sprawdzanie czy wcisniety klawisz jest taki jaki znajduje sie w liscie wczesniej wylosowanych znakow (w klasie Variable)
+        Variable.randomcharsforP1_static[Variable.var_countP1] = str.capitalize(Variable.randomcharsforP1_static[
+                                                                                    Variable.var_countP1])  # Jezeli przycis zgadza sie z wylosowanym wczesniej to zmienia sie jego wielkosc na wielka litere
+        os.system("cls")  # czyszczenie ekranu
         print("WALKA!!!")
         print("=================================")
-        print(display_letters_toclick(Variable.randomcharsforP1_static, Variable.randomcharsforP2_static)) #wyswietlenie informacji o walce i jaka ma byc sekwencja klawiszy dla jednego i drugiego gracza
+        print(display_letters_toclick(Variable.randomcharsforP1_static,
+                                      Variable.randomcharsforP2_static))  # wyswietlenie informacji o walce i jaka ma byc sekwencja klawiszy dla jednego i drugiego gracza
         print("=================================\n")
-        Variable.var_countP1 += 1 # policzenie czy ktos wcisnal odpowiedni klawisz
-    if Variable.var_countP1 == 3: # jezeli ilosc poprawnie wcisnietych klawisz rowne jest 3 nastepuje zabicie przeciwnego gracza
+        Variable.var_countP1 += 1  # policzenie czy ktos wcisnal odpowiedni klawisz
+    if Variable.var_countP1 == 3:  # jezeli ilosc poprawnie wcisnietych klawisz rowne jest 3 nastepuje zabicie przeciwnego gracza
         print('Player1 killed Player2\n')
-        Variable.var_countP1=0 # zerowanie poprawnie wcisnietych znakow gracza 1
-        Variable.killStatePlayer2 = True # zmiana flagi zabicia drugiego graczaxbb
-        listener.stop() # zatrzymanie nasluchiwania klawiszy
+        Variable.var_countP1 = 0  # zerowanie poprawnie wcisnietych znakow gracza 1
+        Variable.killStatePlayer2 = True  # zmiana flagi zabicia drugiego graczaxbb
+        listener.stop()  # zatrzymanie nasluchiwania klawiszy
 
-    try: k = key.char
-    except: k = key.name
-    if k is Variable.randomcharsforP2_static[Variable.var_countP2] and Variable.killStatePlayer1==False:
-        Variable.randomcharsforP2_static[Variable.var_countP2] = str.capitalize(Variable.randomcharsforP2_static[Variable.var_countP2])
+    try:
+        k = key.char
+    except:
+        k = key.name
+    if k is Variable.randomcharsforP2_static[Variable.var_countP2] and Variable.killStatePlayer1 == False:
+        Variable.randomcharsforP2_static[Variable.var_countP2] = str.capitalize(
+            Variable.randomcharsforP2_static[Variable.var_countP2])
         os.system("cls")
         print("WALKA!!!")
         print("=================================")
@@ -140,19 +154,19 @@ Uzyta jest w funkcji on_press_checkinputkey
 
 """
 
-def display_letters_toclick(var1, var2):
 
-    lettersString = "Player 1: " # glowny string funkcji
+def display_letters_toclick(var1, var2):
+    lettersString = "Player 1: "  # glowny string funkcji
 
     for i in var1:
-        lettersString += i      # doklejanie liter ktore maja zostac wyswietlone dla gracza 1
+        lettersString += i  # doklejanie liter ktore maja zostac wyswietlone dla gracza 1
         lettersString += " "
     lettersString += "\tPlayer 2: "
 
     for i in var2:
-        lettersString += i # doklejanie liter ktore maja zostac wyswietlone dla gracza 2
+        lettersString += i  # doklejanie liter ktore maja zostac wyswietlone dla gracza 2
         lettersString += " "
-    return lettersString # zwracanie stringa z sekwencja klawiszy
+    return lettersString  # zwracanie stringa z sekwencja klawiszy
 
 
 # def show_scores_after_fight():
@@ -174,8 +188,6 @@ def display_letters_toclick(var1, var2):
 #     print(display_letters_toclick(Variable.randomcharsforP1_static, Variable.randomcharsforP2_static))
 #     print("=======================================\n")
 #     show_scores_after_fight()
-
-
 
 
 """
