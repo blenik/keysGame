@@ -1,5 +1,5 @@
 from pynput import keyboard
-#import modułu odczytującego ruch z klawaiatury
+#import modulu odczytujacego ruch z klawaiatury
 
 
 #klasa ustawia i sprawdza pozycjie gracza-powoduje ruch, dodaje punkty\wynik
@@ -17,7 +17,7 @@ class player(object):
     def przestaw(self, x,y):
         self.x = x
         self.y = y
-    #ruch w góre, jesli pole puste lub klucz, jesli klucz + punkt
+    #ruch w gore, jesli pole puste lub klucz, jesli klucz + punkt
     def move_up(self, plansza):
         if plansza[self.x -1][self.y ] == "k":
             self.punkty += 1
@@ -31,7 +31,7 @@ class player(object):
             self.x -= 1
         return  zwracam
 
-    # ruch w dół, jesli pole puste lub klucz, jesli klucz + punkt
+    # ruch w dol, jesli pole puste lub klucz, jesli klucz + punkt
     def move_down(self, plansza):
         if plansza[self.x +1][self.y ] == "k":
             self.punkty += 1
