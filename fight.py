@@ -60,7 +60,7 @@ class Fight_Class(object):
         k = key
         if k is self.randomcharsforP1_static[self.var_countP1] and self.killStatePlayer2 == False and self.killStatePlayer2 == False:  # sprawdzanie czy wcisniety klawisz jest taki jaki znajduje sie w liscie wczesniej wylosowanych znakow (w klasie Variable)
             self.randomcharsforP1_static[self.var_countP1] = str.capitalize(self.randomcharsforP1_static[self.var_countP1])  # Jezeli przycis zgadza sie z wylosowanym wczesniej to zmienia sie jego wielkosc na wielka litere
-            os.system("cls")  # czyszczenie ekranu
+            # os.system("cls")  # czyszczenie ekranu
             # print("WALKA!!!")
             # print("=================================")
             # print(Fight_Class().display_letters_toclick(Fight_Class().randomcharsforP1_static, Fight_Class().randomcharsforP2_static))  # wyswietlenie informacji o walce i jaka ma byc sekwencja klawiszy dla jednego i drugiego gracza
@@ -75,7 +75,7 @@ class Fight_Class(object):
 
         if k is self.randomcharsforP2_static[self.var_countP2] and self.killStatePlayer1 == False and self.killStatePlayer2 == False:
             self.randomcharsforP2_static[self.var_countP2] = str.capitalize(self.randomcharsforP2_static[self.var_countP2])
-            os.system("cls")
+            # os.system("cls")
             # print("WALKA!!!")
             # print("=================================")
             # print(Fight_Class().display_letters_toclick(Fight_Class().randomcharsforP1_static, Fight_Class().randomcharsforP2_static))

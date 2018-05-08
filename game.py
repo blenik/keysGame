@@ -8,7 +8,7 @@ from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
 from movement import player
 import os
-# import fight
+from fight import Fight_Class
 
 PLANSZA_SIZE = 22
 interfacePrinter = InterfaceCreator(PLANSZA_SIZE, "*")  # tworzy instancje creatora interfejsu
@@ -77,17 +77,19 @@ def printingTheMap(map):
 
 
 # wywolanie funkcji
-readingLevelsFromFileToArray(lista)
+
 # printingTheMap(lista)
+k=Fight_Class()
 gracz_1 = player(1, 20)
 gracz_2 = player(20, 20)
-
+readingLevelsFromFileToArray(lista)
+init_keys(lista)
 
 def cls():
     os.system('cls')
 
-
-printingTheMap(lista)  # wczytywanie mapy
+interfacePrinter.print_interface()
+printingTheMap(lista)
 
 while True:
 
@@ -129,5 +131,12 @@ while True:
         interfacePrinter.points_increase(True)
     if zmiennaP2:
         interfacePrinter.points_increase(False)
+    # cls()
     interfacePrinter.print_interface()  # pokazuje interface
     printingTheMap(lista)  # wczytywanie mapy
+
+    if k.collision(gracz_1.x, gracz_1.y, gracz_2.x, gracz_2.y):
+        k.chars_randomization()
+        k.display_letters_toclick(k.randomcharsforP1_static, k.randomcharsforP2_static)
+        key = getch().decode("utf-8")
+        k.on_press_checkinputkey(key)
