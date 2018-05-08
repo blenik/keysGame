@@ -8,6 +8,8 @@ from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
 from movement import player
 import os
+from map import readingLevelsFromFileToArray
+from map import printingTheMap
 # import fight
 
 PLANSZA_SIZE = 22
@@ -57,28 +59,12 @@ def init_keys(Plansza):
 
 
 
-
-# funkcja odczytujaca plik z mapa i wpisanie jej do macierzy 'lista'
-# wywalic do osobnego pliku
-def readingLevelsFromFileToArray(lista):
-    file = open('Level_1_Template.txt', 'r')
-    boardgame = file.read().splitlines()
-    file.close()
-    for line in boardgame:
-        lista.append([c for _, c in enumerate(line)])
-    return lista
-
-
-# funkcja wyswietlajaca mape
-# wywalic do osobnego pliku
-def printingTheMap(map):
-    for row in map:
-        print(''.join([str(elem) for elem in row]))
-
-
-# wywolanie funkcji
+# pobranie pliku z mapa
 readingLevelsFromFileToArray(lista)
-# printingTheMap(lista)
+#wyswietlenie mapy
+printingTheMap(lista)
+
+
 gracz_1 = player(1, 20)
 gracz_2 = player(20, 20)
 
