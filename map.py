@@ -1,5 +1,5 @@
 
-# funkcja odczytujaca plik z mapa i wpisanie jej do macierzy 'lista'
+#  import pliku z mapa i wpisanie jej do macierzy 'lista'
 def readingLevelsFromFileToArray(lista):
     file = open('Level_1_Template.txt', 'r')  # 'r' - plik tylko do odczytu
     boardgame = file.read().splitlines()
@@ -9,7 +9,7 @@ def readingLevelsFromFileToArray(lista):
     return lista
 
 
-# funkcja wyswietlajaca mape
+# wyswietlenie mapy
 def printingTheMap(map):
     for row in map:
         print(''.join([str(elem) for elem in row]))

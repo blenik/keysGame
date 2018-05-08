@@ -59,9 +59,9 @@ def init_keys(Plansza):
 
 
 
-# pobranie pliku z mapa
+# import mapy
 readingLevelsFromFileToArray(lista)
-#wyswietlenie mapy
+# print mapy
 printingTheMap(lista)
 
 
