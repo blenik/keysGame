@@ -1,22 +1,21 @@
-from pynput import keyboard
-#import modulu odczytujacego ruch z klawaiatury
-
-
 #klasa ustawia i sprawdza pozycjie gracza-powoduje ruch, dodaje punkty\wynik
 class player(object):
 
     #konstruktor, inicjalizuje pozycjie
-    def __init__(self, pos_x, pos_y):
+    def __init__(self, pos_x, pos_y, plansza):
         self.x = pos_x
         self.y = pos_y
+        plansza[pos_x][pos_y]='p'
 
         self.punkty = 0
         self.wynik = 0
 
-    # przestawia - TO DO- usuwanie poprzedniej pozycji postaci
-    def przestaw(self, x,y):
+    # przestawia
+    def przestaw(self, x,y,plansza):
+        plansza[self.x][self.y]=" "
         self.x = x
         self.y = y
+        plansza[self.x][self.y]="p"
     #ruch w gore, jesli pole puste lub klucz, jesli klucz + punkt
     def move_up(self, plansza):
         if plansza[self.x -1][self.y ] == "k":
