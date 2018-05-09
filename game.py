@@ -8,12 +8,64 @@ from InterfaceCreator import InterfaceCreator
 from msvcrt import getch
 from movement import player
 import os
+import time
 from map import readingLevelsFromFileToArray
 from map import printingTheMap
 from fight import Fight_Class
 
 
 
+def obslugaPunktow(dlaKogo): ## DZIAŁA TYLKO DLATEGO ŻE WSZYSTKO JEST LOKALNIE W JEDNYM SCOPE
+## JEŻELI CHEMY TO NAPRAWIĆ TO ALBO Z GŁÓWNEJ PĘTLI TRZEBA ZROBIĆ KLASĘ 
+## ALBO WALNĄĆ TO JAKO KOD DO PROGRAMU A NIE FUNKCJA
+    if dlaKogo:
+        interfacePrinter.points_increase(True) # zwieksz wynik w interfejsie
+        gameStateDict['P1Points']=gameStateDict['P1Points']+1  # oraz stanie gry 
+        if gameStateDict['P1Points']>7: # jak zdobedzie wiekszosc kluczy 
+            interfacePrinter.score_increase(True) # zwieksz Score wyzeruj punkty
+            gameStateDict['P1Points']=0
+            gameStateDict['P2Points']=0
+            gameStateDict['P1Score']=gameStateDict['P1Score']+1
+            if gameStateDict['P1Score']>2: # jak wygra 3 rundy 
+                clscr()
+                interfacePrinter.print_interface()  # pokazuje interface
+                print('***PLAYER1 WINS***')
+                printingTheMap(lista)  # wczytywanie mapy
+                return False # zakoncz gre
+            else:
+                clscr()
+                interfacePrinter.print_interface()  # pokazuje interface
+                print('***PLAYER1 GETS POINTS***')
+                printingTheMap(lista)  # wczytywanie mapy
+                time.sleep(5) # ustaw mape na nowo
+                gracz_1.przestaw(1,20,lista)
+                gracz_2.przestaw(20,20,lista)
+                init_keys(lista)
+        return True
+    else:
+        interfacePrinter.points_increase(False) # zwieksz wynik w interfejsie
+        gameStateDict['P2Points']=gameStateDict['P2Points']+1 # oraz stanie gry 
+        if gameStateDict['P2Points']>7: # jak zdobedzie wiekszosc kluczy 
+            interfacePrinter.score_increase(False) # zwieksz Score wyzeruj punkty
+            gameStateDict['P2Points']=0
+            gameStateDict['P1Points']=0
+            gameStateDict['P2Score']=gameStateDict['P2Score']+1
+            if gameStateDict['P2Score']>2: # jak wygra 3 rundy 
+                clscr()
+                print('***Player2 WINS***')
+                interfacePrinter.print_interface()  # pokazuje interface
+                printingTheMap(lista)  # wczytywanie mapy
+                return False # zakoncz gre
+            else:
+                clscr()
+                interfacePrinter.print_interface()  # pokazuje interface
+                print('***PLAYER2 GETS POINTS***')
+                printingTheMap(lista)  # wczytywanie mapy
+                time.sleep(5) # ustaw mape na nowo
+                gracz_1.przestaw(1,20,lista)
+                gracz_2.przestaw(20,20,lista)
+                init_keys(lista)
+        return True
 
 # section 1: map
 # wywalic do osobnego pliku
@@ -25,8 +77,8 @@ def respawn(Plansza):
 
 # section 4: randomization
 # wywalic do osobnego pliku
-def cls():
-    os.system('cls')
+def clscr():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
 def init_keys(Plansza):
@@ -61,58 +113,66 @@ k=Fight_Class()
 PLANSZA_SIZE = 22
 interfacePrinter = InterfaceCreator(PLANSZA_SIZE, "*")  # tworzy instancje creatora interfejsu
 lista = list()
-gracz_1 = player(1, 20)
-gracz_2 = player(20, 20)
 readingLevelsFromFileToArray(lista)
+gracz_1 = player(1, 20, lista)
+gracz_2 = player(20, 20, lista)
 init_keys(lista)
 
 
 interfacePrinter.print_interface()
 printingTheMap(lista)
 
-while True:
+gameStateDict={'P1Points':0,'P2Points':0,'P1Score':0,'P2Score':0} #slownik ze stanem gry
 
-    zmiennaP1 = False
-    zmiennaP2 = False
+
+playGame=True # zmienna zeby moznalo gre wylaczyc z innych miejsc
+while playGame:
+
+    clscr()
+    interfacePrinter.print_interface()  # pokazuje interface
+    printingTheMap(lista)  # wczytywanie mapy
+
+    punktDlaP1 = False
+    punktDlaP2 = False
 
     key = ord(getch())
     if key == 115:  # S move down
         print('down')
-        zmiennaP1 = gracz_1.move_down(lista)
+        punktDlaP1 = gracz_1.move_down(lista)
     elif key == 53:  # 5 move down
         print('down')
-        zmiennaP2 = gracz_2.move_down(lista)
+        punktDlaP2 = gracz_2.move_down(lista)
 
     elif key == 119:  # W move up
         print('up')
-        zmiennaP1 = gracz_1.move_up(lista)
+        punktDlaP1 = gracz_1.move_up(lista)
     elif key == 56:  # 8 move up
         print('up')
-        zmiennaP2 = gracz_2.move_up(lista)
+        punktDlaP2 = gracz_2.move_up(lista)
 
     elif key == 97:  # A move Left
         print('left')
-        zmiennaP1 = gracz_1.move_left(lista)
+        punktDlaP1 = gracz_1.move_left(lista)
     elif key == 52:  # A move Left
         print('left')
-        zmiennaP2 = gracz_2.move_left(lista)
+        punktDlaP2 = gracz_2.move_left(lista)
 
     elif key == 100:  # D move Right
         print('right')
-        zmiennaP1 = gracz_1.move_right(lista)
+        punktDlaP1 = gracz_1.move_right(lista)
     elif key == 54:  # 6 move Right
         print('right')
-        zmiennaP2 = gracz_2.move_right(lista)
+        punktDlaP2 = gracz_2.move_right(lista)
     if key == 27:  # ESC
         break
 
-    if zmiennaP1:
-        interfacePrinter.points_increase(True)
-    if zmiennaP2:
-        interfacePrinter.points_increase(False)
-    # cls()
-    interfacePrinter.print_interface()  # pokazuje interface
-    printingTheMap(lista)  # wczytywanie mapy
+    if  punktDlaP1: # jezeli dostanie punkt
+        playGame=obslugaPunktow(True)
+                
+
+    if punktDlaP2: # jezeli dostanie punkt
+        playGame=obslugaPunktow(False)
+    
 
     if k.collision(gracz_1.x, gracz_1.y, gracz_2.x, gracz_2.y):
         k.chars_randomization()
@@ -127,3 +187,5 @@ while True:
                 k.killStatePlayer1 = False
                 k.killStatePlayer2 = False
                 break
+#while(True) ends
+
