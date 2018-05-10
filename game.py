@@ -114,8 +114,8 @@ PLANSZA_SIZE = 22
 interfacePrinter = InterfaceCreator(PLANSZA_SIZE, "*")  # tworzy instancje creatora interfejsu
 lista = list()
 readingLevelsFromFileToArray(lista)
-gracz_1 = player(1, 20, lista)
-gracz_2 = player(20, 20, lista)
+gracz_1 = player(1, 20, lista, '@')
+gracz_2 = player(20, 20, lista, '$')
 init_keys(lista)
 
 
