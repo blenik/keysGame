@@ -2,20 +2,21 @@
 class player(object):
 
     #konstruktor, inicjalizuje pozycjie
-    def __init__(self, pos_x, pos_y, plansza):
+    def __init__(self, pos_x, pos_y, plansza, avatar):
         self.x = pos_x
         self.y = pos_y
-        plansza[pos_x][pos_y]='p'
+        self.avatar = avatar
+        plansza[pos_x][pos_y]= avatar
 
         self.punkty = 0
         self.wynik = 0
 
     # przestawia
-    def przestaw(self, x,y,plansza):
+    def przestaw(self, x, y, plansza):
         plansza[self.x][self.y]=" "
         self.x = x
         self.y = y
-        plansza[self.x][self.y]="p"
+        plansza[self.x][self.y]= self.avatar
     #ruch w gore, jesli pole puste lub klucz, jesli klucz + punkt
     def move_up(self, plansza):
         if plansza[self.x -1][self.y ] == "k":
@@ -26,7 +27,7 @@ class player(object):
 
         if plansza[self.x -1][self.y ] == " " or plansza[self.x -1][self.y ] == "k":
             plansza[self.x][self.y] = " "
-            plansza[self.x -1][self.y] ="p"
+            plansza[self.x -1][self.y] = self.avatar
             self.x -= 1
         return  zwracam
 
@@ -40,7 +41,7 @@ class player(object):
 
         if plansza[self.x +1][self.y] == " " or plansza[self.x +1][self.y ] == "k":
             plansza[self.x][self.y] = " "
-            plansza[self.x + 1][self.y] = "p"
+            plansza[self.x + 1][self.y] = self.avatar
             self.x += 1
         return zwracam
 
@@ -53,7 +54,7 @@ class player(object):
             zwracam = False
         if plansza[self.x][self.y +1] == " " or plansza[self.x ][self.y +1] == "k":
             plansza[self.x][self.y] = " "
-            plansza[self.x][self.y +1] = "p"
+            plansza[self.x][self.y +1] = self.avatar
             self.y += 1
         return zwracam
 
@@ -66,7 +67,7 @@ class player(object):
             zwracam = False
         if plansza[self.x ][self.y -1] == " " or plansza[self.x ][self.y -1] == "k":
             plansza[self.x][self.y] = " "
-            plansza[self.x][self.y -1] = "p"
+            plansza[self.x][self.y -1] = self.avatar
             self.y -= 1
         return zwracam
 
