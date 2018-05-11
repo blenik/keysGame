@@ -1,3 +1,4 @@
+# coding=utf-8
 # the project is divided into sections.
 # edit only your section!
 # comment all yours code!
