@@ -1,7 +1,7 @@
 import unittest
 from InterfaceCreator import InterfaceCreator
 
-class TestGame(unittest.TestCase):
+class TestInterface(unittest.TestCase):
 
     def test_point_increase(self):
         self.InterfacePrinter.points_increase(True)
