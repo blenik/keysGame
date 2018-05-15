@@ -2,17 +2,18 @@
 import os
 import sys
 
+
 # funkcja odczytujaca plik z mapa i wpisanie jej do macierzy 'lista'
-def readingLevelsFromFileToArray(lista):
-    if os.path.exists('Level_1_Template.txt'):
-        with open('Level_1_Template.txt', 'r') as file:
+def readLevelsFromFileToArray(lista, filename):
+    if os.path.exists(filename):
+        with open(filename, 'r') as file:
             try:
-                boardgame = file.read().splitlines()
+                lines = file.read().splitlines()
                 file.close()
-                for line in boardgame:
+                for line in lines:
                     lista.append([c for _, c in enumerate(line)])
             except IOError:
-                print("Could not read file:", 'Level_1_Template.txt')
+                print("Could not read file:", filename)
                 sys.exit()
     else:
         print("There is not any file with map!")
@@ -20,6 +21,6 @@ def readingLevelsFromFileToArray(lista):
 
 
 # funkcja wyswietlajaca mape
-def printingTheMap(map):
+def printTheMap(map):
     for row in map:
         print(''.join([str(elem) for elem in row]))
