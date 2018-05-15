@@ -10,8 +10,8 @@ from msvcrt import getch
 from movement import player
 import os
 import time
-from map import readingLevelsFromFileToArray
-from map import printingTheMap
+from map_importer import readingLevelsFromFileToArray
+from map_importer import printingTheMap
 from fight import Fight_Class
 
 
