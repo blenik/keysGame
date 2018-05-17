@@ -10,8 +10,7 @@ from msvcrt import getch
 from movement import player
 import os
 import time
-from map_importer import readingLevelsFromFileToArray
-from map_importer import printingTheMap
+from map_importer import MapImporter
 from fight import Fight_Class
 
 
@@ -31,13 +30,13 @@ def obslugaPunktow(dlaKogo): ## DZIAŁA TYLKO DLATEGO ŻE WSZYSTKO JEST LOKALNIE
                 clscr()
                 interfacePrinter.print_interface()  # pokazuje interface
                 print('***PLAYER1 WINS***')
-                printingTheMap(lista)  # wczytywanie mapy
+                importer.printTheMap(lista)  # wczytywanie mapy
                 return False # zakoncz gre
             else:
                 clscr()
                 interfacePrinter.print_interface()  # pokazuje interface
                 print('***PLAYER1 GETS POINTS***')
-                printingTheMap(lista)  # wczytywanie mapy
+                importer.printTheMap(lista)  # wczytywanie mapy
                 time.sleep(5) # ustaw mape na nowo
                 gracz_1.przestaw(1,20,lista)
                 gracz_2.przestaw(20,20,lista)
@@ -55,13 +54,13 @@ def obslugaPunktow(dlaKogo): ## DZIAŁA TYLKO DLATEGO ŻE WSZYSTKO JEST LOKALNIE
                 clscr()
                 print('***Player2 WINS***')
                 interfacePrinter.print_interface()  # pokazuje interface
-                printingTheMap(lista)  # wczytywanie mapy
+                importer.printTheMap(lista)  # wczytywanie mapy
                 return False # zakoncz gre
             else:
                 clscr()
                 interfacePrinter.print_interface()  # pokazuje interface
                 print('***PLAYER2 GETS POINTS***')
-                printingTheMap(lista)  # wczytywanie mapy
+                importer.printTheMap(lista)  # wczytywanie mapy
                 time.sleep(5) # ustaw mape na nowo
                 gracz_1.przestaw(1,20,lista)
                 gracz_2.przestaw(20,20,lista)
@@ -112,16 +111,18 @@ def init_keys(Plansza):
 
 k=Fight_Class()
 PLANSZA_SIZE = 22
+BOARD_FILE_NAME = 'Level_1_Template.txt'
 interfacePrinter = InterfaceCreator(PLANSZA_SIZE, "*")  # tworzy instancje creatora interfejsu
 lista = list()
-readingLevelsFromFileToArray(lista)
+importer = MapImporter()
+importer.readLevelsFromFileToArray(lista, BOARD_FILE_NAME)
 gracz_1 = player(1, 20, lista, '@')
 gracz_2 = player(20, 20, lista, '$')
 init_keys(lista)
 
 
 interfacePrinter.print_interface()
-printingTheMap(lista)
+importer.printTheMap(lista)
 
 gameStateDict={'P1Points':0,'P2Points':0,'P1Score':0,'P2Score':0} #slownik ze stanem gry
 
@@ -131,7 +132,7 @@ while playGame:
 
     clscr()
     interfacePrinter.print_interface()  # pokazuje interface
-    printingTheMap(lista)  # wczytywanie mapy
+    importer.printTheMap(lista)  # wczytywanie mapy
 
     punktDlaP1 = False
     punktDlaP2 = False
@@ -180,7 +181,7 @@ while playGame:
         # k.display_letters_toclick(k.randomcharsforP1_static, k.randomcharsforP2_static)
         while k.killStatePlayer1 == False or k.killStatePlayer2 == False:
             interfacePrinter.print_interface()  # pokazuje interface
-            printingTheMap(lista)  # wczytywanie mapy
+            importer.printTheMap(lista)  # wczytywanie mapy
             k.fight_interface()
             key = getch().decode("utf-8")
             k.on_press_checkinputkey(key)
